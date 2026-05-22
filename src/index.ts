@@ -1,5 +1,6 @@
 import {Command} from "commander";
 import create  from "./command/create";
+import update from "./command/update";
 const program = new Command('moira'); //命令行使用moira 作为命令出发
 
 import { version } from "../package.json";
@@ -19,7 +20,9 @@ program.command('create').description('创建一个新项目').argument(
         
     }
 })
-// program.command('update').description('更新项目到最新版本').action(() => {
-//     console.log('更新项目到最新版本');
-// })
+program.command('update').description('更新项目到最新版本').action(async() => {
+    console.log('update type:', typeof update);
+    console.log('更新项目到最新版本');
+    await update()
+})
 program.parse(); //解析命令行参数

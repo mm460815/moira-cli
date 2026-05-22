@@ -24,8 +24,8 @@ export const templates:Map<string,TemplateInfo> =new Map(
         }],
         ['vue3-vite-typescript-app', {
             name: 'admin-template',
-            url: 'https://gitee.com/aoliao97/admin-pro.git',
-            branch: 'dev',
+            url: 'git@gitee.com:sohucw/admin-pro.git',
+            branch: 'h5',
             description: 'vue3移动端模板'
         }]
     ],
@@ -40,23 +40,23 @@ export const getNpmInfo = async (name:string) => {
     }
     return res;
 }
-// export  const getNpmLatestVersion = async (name:string) => {
-//     const { data } = (await getNpmInfo(name)) as AxiosResponse;
-//     return  data['dist-tags'].latest;
-// }
-// export const checkVersion = async (name:string, version:string) => {
-//     const latestVersion = await getNpmLatestVersion(name);
-//    const need = gt(latestVersion, version);
-//     if (need) {
-//         console.warn(
-//             `检查到最新版本： ${chalk.blackBright(latestVersion)}，当前版本是：${chalk.blackBright(version)}`
-//         );
-//         console.log(
-//             `可使用： ${chalk.yellow('npm install moira-cli@latest')}，或者使用：${chalk.yellow('moira update')}更新`
-//         );
-//     }
-//     return need;
-// }
+export  const getNpmLatestVersion = async (name:string) => {
+    const { data } = (await getNpmInfo(name)) as AxiosResponse;
+    return  data['dist-tags'].latest;
+}
+export const checkVersion = async (name:string, version:string) => {
+    const latestVersion = await getNpmLatestVersion(name);
+   const need = gt(latestVersion, version);
+    if (need) {
+        console.warn(
+            `检查到最新版本： ${chalk.blackBright(latestVersion)}，当前版本是：${chalk.blackBright(version)}`
+        );
+        console.log(
+            `可使用： ${chalk.yellow('npm install moira-cli@latest')}，或者使用：${chalk.yellow('moira update')}更新`
+        );
+    }
+    return need;
+}
 export default async  function create(projectName?: string) {
     // TODO: create a new project
     const templateList = Array.from(templates.entries()).map((item:[string,TemplateInfo]) => {
@@ -82,7 +82,7 @@ export default async  function create(projectName?: string) {
            await  fstat.remove(filePath) //删除文件 
         }   
     }
-    // await checkVersion(name, version);
+    await checkVersion(name, version);
     const templateName = await select({
         message: '请选择模板',
         choices: templateList

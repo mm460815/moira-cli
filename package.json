@@ -6,19 +6,38 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rollup -c rollup.config.mjs --bundleConfigAsCjs"
   },
-  "keywords": [],
+  "keywords": [
+    "Vite",
+    "Vue3",
+    "TypeScript",
+    "Element-plus"
+  ],
+  "files": [
+    "bin",
+    "REDME.md",
+    "dist"
+  ],
   "author": "moira",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/moira-chen/moiracli.git"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
   "license": "ISC",
-  "description": "",
+  "description": "moira-cli脚手架工具",
   "dependencies": {
     "@inquirer/prompts": "^8.4.3",
     "axios": "^1.16.1",
     "chalk": "^4.1.2",
+    "figlet": "^1.11.0",
     "fs-extra": "^11.3.5",
     "i": "^0.3.7",
     "lodash": "^4.18.1",
     "log-symbols": "^7.0.1",
     "npm": "^11.15.0",
+    "ora": "5",
     "progress-estimator": "^0.3.1",
     "simple-git": "^3.36.0",
     "typescript": "^6.0.3"
@@ -28,6 +47,7 @@
     "@rollup/plugin-json": "^6.1.0",
     "@rollup/plugin-node-resolve": "^16.0.3",
     "@rollup/plugin-terser": "^1.0.0",
+    "@types/figlet": "^1.7.0",
     "@types/fs-extra": "^11.0.4",
     "@types/lodash": "^4.17.24",
     "@types/node": "^25.9.1",
